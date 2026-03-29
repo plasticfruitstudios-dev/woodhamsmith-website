@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Woodham Smith</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Woodham Smith</a>
+            </div>
+
+            <nav class="nav" id="nav">
+                <a href="index.html" class="nav-link">Antiques</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="about-page">
+        <section class="about-hero fade-in">
+            <div class="container">
+                <h1>About Thomas Woodham-Smith</h1>
+            </div>
+        </section>
+
+        <section class="about-content fade-in">
+            <div class="container">
+                <div class="about-text">
+                    <p>
+                        Thomas Woodham-Smith is an antiques dealer and art advisor focused on quality of manufacture and originality of design across various periods. With a career spanning decades, he has established himself as a trusted voice in the international antiques market.
+                    </p>
+
+                    <h2>Career Highlights</h2>
+
+                    <p>
+                        In 1985, Thomas joined <strong>Mallett</strong>, where he quickly rose through the ranks to become associate director and later managing director of Mallett at Bourdon House. In 2006, he was appointed Managing Director at the Bond Street location, overseeing one of London's most prestigious antiques galleries.
+                    </p>
+
+                    <p>
+                        In 2008, Thomas founded and served as Creative Director and Chairman of the <strong>Masterpiece Fair</strong>, an influential art and antiques fair that became a hallmark of the London social calendar. He continued in this role until 2010, when he left Mallett to establish himself in private dealing and consultancy.
+                    </p>
+
+                    <p>
+                        Since transitioning to independent practice, Thomas has undertaken notable projects including collaborations with renowned photographer and designer Willy Rizzo, overseeing specialized restoration businesses, and acquiring workshop premises in Clapham to support his growing network of craftspeople and conservators.
+                    </p>
+
+                    <p>
+                        In 2019, Thomas co-purchased and spearheaded the regeneration of the <strong>BADA Fair</strong>, rebranding and repositioning it as <strong>The Open Art Fair</strong>. This venture reflects his ongoing commitment to fostering excellence and innovation within the antiques and art community.
+                    </p>
+
+                    <h2>Philosophy</h2>
+
+                    <p>
+                        Thomas believes that the true value of an antique lies not merely in its age or provenance, but in the craftsmanship and design that created it. Whether sourcing Georgian furniture, European ceramics, or contemporary works by emerging designers, his focus remains unwavering: quality of manufacture and originality of design.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section fade-in">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@woodhamsmith.com">info@woodhamsmith.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Address</h3>
+                        <p>29 Hanover Gardens<br>London SE11 5TN<br>United Kingdom</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Woodham Smith</h3>
+                    <p>Antiques dealer & art advisor focused on quality of manufacture and originality of design.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@woodhamsmith.com</p>
+                    <p>29 Hanover Gardens<br>London SE11 5TN</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Follow</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/woodhamsmithltd/" target="_blank">Instagram</a>
+                        <a href="https://www.facebook.com/woodhamsmith" target="_blank">Facebook</a>
+                        <a href="https://www.linkedin.com/company/woodham-smith/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Woodham Smith. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

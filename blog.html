@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Woodham Smith</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .blog-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .blog-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: #f5f5f5;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-card-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-card-excerpt {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Woodham Smith</a>
+            </div>
+
+            <nav class="nav" id="nav">
+                <a href="index.html" class="nav-link">Antiques</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="blog-page">
+        <section class="blog-hero fade-in">
+            <div class="container">
+                <h1>Insights & Stories</h1>
+                <p>Thoughts on antiques, design, and the art of collecting</p>
+            </div>
+        </section>
+
+        <section class="blog-listing fade-in">
+            <div class="container">
+                <div class="blog-grid" id="blogGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Woodham Smith</h3>
+                    <p>Antiques dealer & art advisor focused on quality of manufacture and originality of design.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@woodhamsmith.com</p>
+                    <p>29 Hanover Gardens<br>London SE11 5TN</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Follow</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/woodhamsmithltd/" target="_blank">Instagram</a>
+                        <a href="https://www.facebook.com/woodhamsmith" target="_blank">Facebook</a>
+                        <a href="https://www.linkedin.com/company/woodham-smith/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Woodham Smith. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Blog posts data - embedded directly in HTML
+        const blogPosts = [
+            {
+                id: 1,
+                title: "The Man with the Van",
+                date: "October 27, 2021",
+                excerpt: "Profile of Simon Pugh, an antiques runner.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/42323e1c-fd96-4b0c-b77d-890a72c7e0be/Screenshot+2021-10-27+at+12.42.24.png",
+                url: "https://www.woodhamsmith.com/blog/the-man-with-the-van"
+            },
+            {
+                id: 2,
+                title: "Poop Poor Purchases",
+                date: "October 27, 2021",
+                excerpt: "Replacing a Renault Grand Espace due to ULEZ.",
+                image: "http://static1.squarespace.com/static/55ffceffe4b0af0b2a75e951/t/617939f9b9c3f609f630d9d8/1635334672728/Screenshot+2021-10-27+at+12.36.48.png?format=1500w",
+                url: "https://www.woodhamsmith.com/blog/poop-poor-purchases"
+            },
+            {
+                id: 3,
+                title: "Cool Beans",
+                date: "August 6, 2021",
+                excerpt: "Interview with coffee roaster Jack Coleman.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628259956117-9SBR7ONGIOGW0VO0348Q/Screenshot+2021-08-06+at+15.23.39.png",
+                url: "https://www.woodhamsmith.com/blog/cool-beans"
+            },
+            {
+                id: 4,
+                title: "Only Collect",
+                date: "August 6, 2021",
+                excerpt: "Difference between clients and collectors.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628259603108-HKDDBC52JH60C83OAUET/Screenshot+2021-08-06+at+15.19.08.png",
+                url: "https://www.woodhamsmith.com/blog/only-collect"
+            },
+            {
+                id: 5,
+                title: "Trophy Cabinets",
+                date: "August 6, 2021",
+                excerpt: "Profile of Simon Phillips at Ronald Phillips Ltd.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628259446019-VCXX39JNNKAGNZV41554/Screenshot+2021-08-06+at+15.16.16.png",
+                url: "https://www.woodhamsmith.com/blog/trophy-cabinets"
+            },
+            {
+                id: 6,
+                title: "Shock of the New",
+                date: "August 6, 2021",
+                excerpt: "Post-lockdown antiques trade recovery.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628259333111-MBRTNKPOZC046CLODCQL/Screenshot+2021-08-06+at+15.12.38.png",
+                url: "https://www.woodhamsmith.com/blog/shock-of-the-new"
+            },
+            {
+                id: 7,
+                title: "Secrets of Portobello",
+                date: "August 6, 2021",
+                excerpt: "Guide to Portobello Road dealers.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628258278678-DQHONL7ZTPOFZB1R0714/Screenshot+2021-08-06+at+14.56.18.png",
+                url: "https://www.woodhamsmith.com/blog/secrets-of-portobello"
+            },
+            {
+                id: 8,
+                title: "Friends Old and New",
+                date: "August 6, 2021",
+                excerpt: "Collecting versus stocking.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628258092411-27H5WDNNJYX2TS3XIVPJ/Screenshot+2021-08-06+at+14.53.18.png",
+                url: "https://www.woodhamsmith.com/blog/friends-old-and-new"
+            },
+            {
+                id: 9,
+                title: "On Nodding Terms",
+                date: "August 6, 2021",
+                excerpt: "The selling process in antiques.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628257652404-BBXPDIIASUJAD8MI8SML/Screenshot+2021-08-06+at+14.44.43.png",
+                url: "https://www.woodhamsmith.com/blog/on-nodding-terms"
+            },
+            {
+                id: 10,
+                title: "Wheeling and Spieling",
+                date: "August 6, 2021",
+                excerpt: "Sound and silence in antiques.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628257387911-SB4ZK7U4YKE0PCCMA3C6/Screenshot+2021-08-06+at+14.41.36.png",
+                url: "https://www.woodhamsmith.com/blog/wheeling-and-spieling"
+            },
+            {
+                id: 11,
+                title: "Lovely Legs, Madam",
+                date: "August 6, 2021",
+                excerpt: "Dealers' aspirations toward glamour.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628257132733-7P517O4245VHE0W0D5G5/Screenshot+2021-08-06+at+14.38.06.png",
+                url: "https://www.woodhamsmith.com/blog/lovely-legs-madam"
+            },
+            {
+                id: 12,
+                title: "Swap til You Drop",
+                date: "August 6, 2021",
+                excerpt: "Annual Swap Shop at Stow-on-the-Wold.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628256866589-1GISPKBN58XLNXWV9Z9Z/Screenshot+2021-08-06+at+14.29.52.png",
+                url: "https://www.woodhamsmith.com/blog/swap-til-you-drop"
+            },
+            {
+                id: 13,
+                title: "Closing the Books",
+                date: "August 6, 2021",
+                excerpt: "Evolution of antiques research from books to digital.",
+                image: "https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1628256951051-SVZJCFEN1QIH88QZAV1O/Screenshot+2021-08-06+at+14.28.04.png",
+                url: "https://www.woodhamsmith.com/blog/closing-the-books"
+            }
+        ];
+
+        // Render blog posts
+        function renderBlogPosts() {
+            const blogGrid = document.getElementById('blogGrid');
+            blogGrid.innerHTML = blogPosts.map(post => `
+                <a href="${post.url}" class="blog-card" target="_blank" rel="noopener noreferrer">
+                    <img src="${post.image}" alt="${post.title}" class="blog-card-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22240%22%3E%3Crect fill=%22%23f5f5f5%22 width=%22300%22 height=%22240%22/%3E%3C/svg%3E'">
+                    <div class="blog-card-content">
+                        <div class="blog-card-date">${post.date}</div>
+                        <h2 class="blog-card-title">${post.title}</h2>
+                        <p class="blog-card-excerpt">${post.excerpt}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderBlogPosts);
+
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

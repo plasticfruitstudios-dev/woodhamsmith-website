@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail - Woodham Smith</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Additional styles for product detail page */
+    .breadcrumb {
+      padding: var(--spacing-lg) var(--spacing-lg);
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-light-gray);
+      margin-top: 70px;
+      font-size: var(--fs-small);
+      color: var(--color-medium-gray);
+    }
+
+    .breadcrumb-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+    }
+
+    .breadcrumb a {
+      color: var(--color-charcoal);
+      text-decoration: none;
+      transition: color var(--transition-normal);
+    }
+
+    .breadcrumb a:hover {
+      color: var(--color-gold);
+    }
+
+    .breadcrumb-separator {
+      margin: 0 var(--spacing-sm);
+      color: var(--color-medium-gray);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: var(--spacing-2xl);
+      padding: var(--spacing-md) 0;
+      color: var(--color-charcoal);
+      text-decoration: none;
+      font-size: var(--fs-small);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color var(--transition-normal);
+    }
+
+    .back-link::before {
+      content: '← ';
+      margin-right: var(--spacing-sm);
+    }
+
+    .back-link:hover {
+      color: var(--color-gold);
+    }
+
+    .product-not-found {
+      padding: var(--spacing-3xl) var(--spacing-lg);
+      margin-top: 70px;
+      text-align: center;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product-not-found h1 {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .product-not-found p {
+      margin-bottom: var(--spacing-lg);
+      color: var(--color-medium-gray);
+    }
+
+    /* Lightbox specific styles */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(26, 26, 26, 0.95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-lg);
+      animation: fadeIn var(--transition-normal);
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 90vh;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      color: var(--color-white);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .lightbox-close:hover {
+      color: var(--color-gold);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-white);
+      font-size: 2rem;
+      cursor: pointer;
+      padding: var(--spacing-md);
+      transition: color var(--transition-normal);
+      z-index: 2001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+    }
+
+    .lightbox-nav:hover {
+      color: var(--color-gold);
+    }
+
+    .lightbox-nav.hidden {
+      display: none;
+    }
+
+    .lightbox-prev {
+      left: -60px;
+    }
+
+    .lightbox-next {
+      right: -60px;
+    }
+
+    @media (max-width: 768px) {
+      .lightbox-prev {
+        left: var(--spacing-sm);
+      }
+
+      .lightbox-next {
+        right: var(--spacing-sm);
+      }
+
+      .lightbox-close {
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">Woodham Smith</a>
+      <nav class="nav">
+        <a href="antiques.html">Antiques</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="antiques.html">Antiques</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb" id="breadcrumb">
+    <div class="breadcrumb-container">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="antiques.html">Antiques</a>
+      <span class="breadcrumb-separator">/</span>
+      <span id="breadcrumb-category">Category</span>
+      <span class="breadcrumb-separator">/</span>
+      <span id="breadcrumb-title">Product</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Product Detail Section -->
+    <section class="product-detail-section" id="product-section">
+      <div class="product-detail-container" id="product-container">
+        <!-- Gallery (Left Column) -->
+        <div class="product-gallery">
+          <div class="product-gallery-main" id="product-gallery-main">
+            <img id="main-image" src="" alt="Product image">
+          </div>
+          <div class="product-thumbnails" id="product-thumbnails">
+            <!-- Thumbnails generated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Product Info (Right Column) -->
+        <div class="product-details">
+          <h1 id="product-title">Product Title</h1>
+          <p id="product-description" class="product-description">Product description will appear here.</p>
+          <a href="#" id="enquire-button" class="btn-enquire">Enquire</a>
+          <a href="antiques.html" class="back-link">Back to Collection</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Not Found Message (Hidden by default) -->
+    <section class="product-not-found" id="product-not-found" style="display: none;">
+      <h1>Product Not Found</h1>
+      <p>Sorry, the product you're looking for doesn't exist or has been removed.</p>
+      <a href="antiques.html" class="btn-enquire">Back to Antiques</a>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img class="lightbox-image" id="lightbox-image" src="" alt="Lightbox image">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">×</button>
+      <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+      <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@woodhamsmith.com">info@woodhamsmith.com</a></li>
+          <li><a href="tel:+1234567890">+1 (234) 567-8900</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="antiques.html">Antiques</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Follow</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">@</a>
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Woodham Smith. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // State management
+    let currentProduct = null;
+    let currentImageIndex = 0;
+    let allImages = [];
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      setupHeaderScroll();
+      setupHamburger();
+      loadProduct();
+    });
+
+    // Setup header scroll effect
+    function setupHeaderScroll() {
+      const header = document.querySelector('.header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+
+    // Setup hamburger menu toggle
+    function setupHamburger() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+      });
+
+      // Close mobile menu when a link is clicked
+      const mobileNavLinks = mobileNav.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          mobileNav.classList.remove('active');
+        });
+      });
+    }
+
+    // Parse URL query string
+    function getUrlParam(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    // Load product data
+    async function loadProduct() {
+      const productId = getUrlParam('id');
+
+      if (!productId) {
+        showProductNotFound();
+        return;
+      }
+
+      try {
+        const response = await fetch('data/products.json');
+        const products = await response.json();
+
+        const product = products.find(p => p.id === productId);
+
+        if (!product) {
+          showProductNotFound();
+          return;
+        }
+
+        currentProduct = product;
+        allImages = product.images || [];
+        currentImageIndex = 0;
+
+        populateProduct(product);
+        setupGallery(product);
+        setupLightbox();
+      } catch (error) {
+        console.error('Error loading product:', error);
+        showProductNotFound();
+      }
+    }
+
+    // Populate product information
+    function populateProduct(product) {
+      document.getElementById('product-title').textContent = product.title;
+      document.getElementById('product-description').textContent = product.description;
+
+      // Update breadcrumb
+      const categoryDisplay = product.category.charAt(0).toUpperCase() + product.category.slice(1);
+      document.getElementById('breadcrumb-category').textContent = categoryDisplay;
+      document.getElementById('breadcrumb-title').textContent = product.title;
+
+      // Setup enquire button
+      const enquireButton = document.getElementById('enquire-button');
+      enquireButton.href = `mailto:info@woodhamsmith.com?subject=Enquiry about: ${encodeURIComponent(product.title)}`;
+    }
+
+    // Setup gallery functionality
+    function setupGallery(product) {
+      const mainImage = document.getElementById('main-image');
+      const thumbnailsContainer = document.getElementById('product-thumbnails');
+
+      // Set initial main image
+      if (allImages.length > 0) {
+        mainImage.src = allImages[0];
+        mainImage.alt = product.title;
+      }
+
+      // Generate thumbnails
+      allImages.forEach((image, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = 'product-thumbnail' + (index === 0 ? ' active' : '');
+        thumbnail.innerHTML = `<img src="${image}" alt="${product.title} thumbnail ${index + 1}">`;
+
+        thumbnail.addEventListener('click', () => {
+          setMainImage(index);
+          updateActiveThumbnail(index);
+        });
+
+        thumbnailsContainer.appendChild(thumbnail);
+      });
+    }
+
+    // Set main image by index
+    function setMainImage(index) {
+      if (index >= 0 && index < allImages.length) {
+        const mainImage = document.getElementById('main-image');
+        mainImage.src = allImages[index];
+        currentImageIndex = index;
+      }
+    }
+
+    // Update active thumbnail styling
+    function updateActiveThumbnail(index) {
+      const thumbnails = document.querySelectorAll('.product-thumbnail');
+      thumbnails.forEach((thumb, i) => {
+        if (i === index) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    // Setup lightbox functionality
+    function setupLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxPrev = document.getElementById('lightbox-prev');
+      const lightboxNext = document.getElementById('lightbox-next');
+      const mainImageElement = document.getElementById('main-image');
+
+      // Open lightbox on main image click
+      mainImageElement.addEventListener('click', () => {
+        lightboxImage.src = allImages[currentImageIndex];
+        lightbox.classList.add('active');
+        updateLightboxNavigation();
+      });
+
+      // Close lightbox
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+
+        if (e.key === 'Escape') {
+          closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+          previousImage();
+        } else if (e.key === 'ArrowRight') {
+          nextImage();
+        }
+      });
+
+      // Next/Previous buttons
+      lightboxNext.addEventListener('click', nextImage);
+      lightboxPrev.addEventListener('click', previousImage);
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+      }
+
+      function nextImage() {
+        if (currentImageIndex < allImages.length - 1) {
+          currentImageIndex++;
+          lightboxImage.src = allImages[currentImageIndex];
+          updateLightboxNavigation();
+        }
+      }
+
+      function previousImage() {
+        if (currentImageIndex > 0) {
+          currentImageIndex--;
+          lightboxImage.src = allImages[currentImageIndex];
+          updateLightboxNavigation();
+        }
+      }
+
+      function updateLightboxNavigation() {
+        // Hide prev button if on first image
+        if (currentImageIndex === 0) {
+          lightboxPrev.classList.add('hidden');
+        } else {
+          lightboxPrev.classList.remove('hidden');
+        }
+
+        // Hide next button if on last image
+        if (currentImageIndex === allImages.length - 1) {
+          lightboxNext.classList.add('hidden');
+        } else {
+          lightboxNext.classList.remove('hidden');
+        }
+      }
+    }
+
+    // Show product not found message
+    function showProductNotFound() {
+      document.getElementById('product-section').style.display = 'none';
+      document.getElementById('product-not-found').style.display = 'block';
+      document.getElementById('breadcrumb').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

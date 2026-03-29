@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antiques - Woodham Smith</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">Woodham Smith</a>
+            </div>
+
+            <nav class="nav" id="nav">
+                <a href="antiques.html" class="nav-link active">Antiques</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="antiques-page">
+        <!-- Page Title Section -->
+        <section class="antiques-hero fade-in" style="margin-top: 70px; padding: var(--spacing-3xl) var(--spacing-lg); text-align: center;">
+            <div class="container">
+                <h1>Antiques</h1>
+            </div>
+        </section>
+
+        <!-- Category Filter Bar -->
+        <section class="category-filter">
+            <div class="category-filter-container" id="filterContainer">
+                <button class="filter-pill active" data-category="all">All</button>
+                <button class="filter-pill" data-category="furniture">Furniture</button>
+                <button class="filter-pill" data-category="lighting">Lighting</button>
+                <button class="filter-pill" data-category="objects">Objects</button>
+                <button class="filter-pill" data-category="20th-and-21-st-century-furniture">20th & 21st Century Furniture</button>
+                <button class="filter-pill" data-category="coffee-and-end-tables">Coffee & End Tables</button>
+                <button class="filter-pill" data-category="ceramics-and-glass">Ceramics & Glass</button>
+                <button class="filter-pill" data-category="pictures">Pictures</button>
+                <button class="filter-pill" data-category="mirrors">Mirrors</button>
+                <button class="filter-pill" data-category="clocks">Clocks</button>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Woodham Smith</h3>
+                    <p>Antiques dealer & art advisor focused on quality of manufacture and originality of design.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>info@woodhamsmith.com</p>
+                    <p>29 Hanover Gardens<br>London SE11 5TN</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Follow</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/woodhamsmithltd/" target="_blank">Instagram</a>
+                        <a href="https://www.facebook.com/woodhamsmith" target="_blank">Facebook</a>
+                        <a href="https://www.linkedin.com/company/woodham-smith/" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Woodham Smith. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Track current filter state
+        let allProducts = [];
+        let currentFilter = 'all';
+
+        // Load products from JSON
+        async function loadProducts() {
+            try {
+                const response = await fetch('data/products.json');
+                allProducts = await response.json();
+
+                // Get filter from URL hash if present
+                const hashFilter = window.location.hash.slice(1);
+                if (hashFilter) {
+                    currentFilter = hashFilter;
+                } else {
+                    currentFilter = 'all';
+                }
+
+                // Set active filter pill
+                updateActiveFilter();
+
+                // Render products
+                renderProducts(currentFilter);
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productsGrid').innerHTML = '<p>Error loading products. Please try again later.</p>';
+            }
+        }
+
+        // Render products based on filter
+        function renderProducts(filter) {
+            const grid = document.getElementById('productsGrid');
+
+            let filteredProducts = allProducts;
+            if (filter !== 'all') {
+                filteredProducts = allProducts.filter(product => product.category === filter);
+            }
+
+            // Clear grid with fade out
+            grid.style.opacity = '0';
+
+            setTimeout(() => {
+                grid.innerHTML = '';
+
+                filteredProducts.forEach(product => {
+                    const card = createProductCard(product);
+                    grid.appendChild(card);
+                });
+
+                // Fade in
+                grid.style.opacity = '1';
+            }, 150);
+        }
+
+        // Create product card element
+        function createProductCard(product) {
+            const card = document.createElement('a');
+            card.href = `product.html?id=${product.id}`;
+            card.className = 'product-card';
+            card.style.cursor = 'pointer';
+            card.style.display = 'block';
+            card.style.textDecoration = 'none';
+            card.style.color = 'inherit';
+
+            const imageWrapper = document.createElement('div');
+            imageWrapper.className = 'product-image-wrapper';
+
+            const image = document.createElement('img');
+            image.className = 'product-image';
+            image.src = product.images[0];
+            image.alt = product.title;
+            image.onerror = function() {
+                this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="400"%3E%3Crect fill="%23f0ebe3" width="300" height="400"/%3E%3Ctext x="50%25" y="50%25" font-family="Arial" font-size="16" fill="%23999" text-anchor="middle" dy=".3em"%3EImage not available%3C/text%3E%3C/svg%3E';
+            };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'product-overlay';
+
+            const title = document.createElement('h3');
+            title.textContent = product.title;
+
+            overlay.appendChild(title);
+            imageWrapper.appendChild(image);
+            imageWrapper.appendChild(overlay);
+            card.appendChild(imageWrapper);
+
+            return card;
+        }
+
+        // Update active filter pill
+        function updateActiveFilter() {
+            document.querySelectorAll('.filter-pill').forEach(pill => {
+                pill.classList.remove('active');
+                if (pill.dataset.category === currentFilter) {
+                    pill.classList.add('active');
+                }
+            });
+        }
+
+        // Handle filter button clicks
+        document.querySelectorAll('.filter-pill').forEach(button => {
+            button.addEventListener('click', function() {
+                currentFilter = this.dataset.category;
+                window.location.hash = currentFilter;
+                updateActiveFilter();
+                renderProducts(currentFilter);
+            });
+        });
+
+        // Handle hash change (back button, direct URL navigation)
+        window.addEventListener('hashchange', () => {
+            const hashFilter = window.location.hash.slice(1);
+            if (hashFilter && hashFilter !== currentFilter) {
+                currentFilter = hashFilter;
+                updateActiveFilter();
+                renderProducts(currentFilter);
+            }
+        });
+
+        // Add smooth transition to grid
+        const grid = document.getElementById('productsGrid');
+        grid.style.transition = 'opacity 0.3s ease-out';
+
+        // Load products when page loads
+        loadProducts();
+    </script>
+
+    <style>
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-section h3 {
+            color: var(--color-white);
+            font-size: var(--fs-base);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-section p {
+            font-size: var(--fs-small);
+            line-height: var(--lh-relaxed);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .social-links a {
+            font-size: var(--fs-small);
+            color: var(--color-white);
+            transition: color var(--transition-normal);
+        }
+
+        .social-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1440px;
+            margin: var(--spacing-2xl) auto 0;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: var(--fs-small);
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+</html>
