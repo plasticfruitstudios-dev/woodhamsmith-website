@@ -309,6 +309,27 @@ button {
   background-color: var(--color-light-gray);
 }
 
+/* Mobile Navigation - stack below logo */
+@media (max-width: 767px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .nav {
+    gap: var(--spacing-lg);
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav a {
+    font-size: var(--fs-small);
+  }
+}
+
 /* Desktop Navigation */
 @media (min-width: 768px) {
   .nav {
@@ -432,7 +453,7 @@ button {
 .product-image-wrapper {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
 }
 
 .product-image {

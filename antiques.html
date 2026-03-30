@@ -26,13 +26,6 @@
 
     <!-- Main Content -->
     <main class="antiques-page">
-        <!-- Page Title Section -->
-        <section class="antiques-hero fade-in" style="margin-top: 70px; padding: var(--spacing-3xl) var(--spacing-lg); text-align: center;">
-            <div class="container">
-                <h1>Antiques</h1>
-            </div>
-        </section>
-
         <!-- Category Filter Bar -->
         <section class="category-filter">
             <div class="category-filter-container" id="filterContainer">
@@ -232,20 +225,13 @@
     </script>
 
     <style>
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .category-filter { margin-top: 70px; }
+        .footer-minimal { padding: var(--spacing-xl) var(--spacing-lg); text-align: center; background-color: transparent; }
+        .footer-minimal-inner { max-width: 1400px; margin: 0 auto; }
+        .social-icons { display: flex; justify-content: center; gap: var(--spacing-lg); }
+        .social-icons a { display: inline-flex; width: 20px; height: 20px; color: var(--color-charcoal); transition: color var(--transition-normal); }
+        .social-icons a:hover { color: var(--color-gold); }
+        .social-icons svg { width: 100%; height: 100%; fill: currentColor; }
     </style>
 </body>
 </html>

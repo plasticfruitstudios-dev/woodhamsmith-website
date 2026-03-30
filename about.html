@@ -8,15 +8,16 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         .about-page { padding-top: 100px; padding-bottom: var(--spacing-3xl); background-color: var(--color-off-white); }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 var(--spacing-lg); }
-        .about-hero h1 { font-size: var(--fs-h2); margin-bottom: var(--spacing-xl); }
-        .about-text p { margin-bottom: var(--spacing-lg); line-height: var(--lh-relaxed); }
-        .about-text h2 { font-size: var(--fs-h3); margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-lg); }
-        .contact-section { margin-top: var(--spacing-3xl); padding-top: var(--spacing-2xl); border-top: 1px solid var(--color-light-gray); }
-        .contact-section h2 { margin-bottom: var(--spacing-xl); }
-        .contact-info { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
-        .contact-item h3 { font-size: var(--fs-base); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-sm); }
-        @media (max-width: 768px) { .contact-info { grid-template-columns: 1fr; } }
+        .about-container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-lg); display: grid; grid-template-columns: 1fr 1.5fr; gap: var(--spacing-3xl); }
+        .about-image-col img { width: 100%; display: block; }
+        .about-image-col p { font-size: var(--fs-small); color: var(--color-medium-gray); margin-top: var(--spacing-lg); line-height: var(--lh-relaxed); }
+        .about-image-col a { color: var(--color-charcoal); text-decoration: underline; }
+        .about-text-col h1 { font-size: var(--fs-h2); margin-bottom: var(--spacing-sm); }
+        .about-text-col .address { font-size: var(--fs-base); color: var(--color-medium-gray); margin-bottom: var(--spacing-xs); }
+        .about-text-col .email { margin-bottom: var(--spacing-xl); }
+        .about-text-col .email a { text-decoration: underline; }
+        .about-text-col p { margin-bottom: var(--spacing-lg); line-height: var(--lh-relaxed); }
+        @media (max-width: 768px) { .about-container { grid-template-columns: 1fr; gap: var(--spacing-xl); } }
         .footer-minimal { padding: var(--spacing-xl) var(--spacing-lg); text-align: center; background-color: transparent; }
         .footer-minimal-inner { max-width: 1400px; margin: 0 auto; }
         .social-icons { display: flex; justify-content: center; gap: var(--spacing-lg); }
@@ -32,73 +33,47 @@
             <div class="logo">
                 <a href="index.html">Woodham-Smith LTD</a>
             </div>
-
             <nav class="nav" id="nav">
                 <a href="antiques.html" class="nav-link">Antiques</a>
                 <a href="about.html" class="nav-link active">About</a>
                 <a href="blog.html" class="nav-link">Blog</a>
             </nav>
-
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="about-page">
-        <section class="about-hero">
-            <div class="container">
-                <h1>About Thomas Woodham-Smith</h1>
+        <div class="about-container">
+            <div class="about-image-col">
+                <img src="Thomas-Woodham-Smith.jpg" alt="Thomas Woodham-Smith">
+                <p>For more regular updates and musings follow me on Instagram - <a href="https://www.instagram.com/thomasws1/" target="_blank">@thomasws1</a></p>
             </div>
-        </section>
+            <div class="about-text-col">
+                <h1>Thomas Woodham-Smith</h1>
+                <p class="address">29 Hanover Gardens, London SE11 5TN</p>
+                <p class="email"><a href="mailto:info@woodhamsmith.com">info@woodhamsmith.com</a></p>
 
-        <section class="about-content">
-            <div class="container">
-                <div class="about-text">
-                    <p>
-                        Thomas Woodham-Smith is an antiques dealer and art advisor focused on quality of manufacture and originality of design across various periods. With a career spanning decades, he has established himself as a trusted voice in the international antiques market.
-                    </p>
+                <p>Today I am a dealer and an Art advisor. In this website I hope to give an idea of my taste and trading philosophy which is - in brief - to focus on quality of manufacture and originality of design, whilst not being bogged down by so-called periods. Great design from any age grabs my attention and I hope that I can in a small way grab yours.</p>
 
-                    <h2>Career Highlights</h2>
+                <p>I have been in the antique trade all my professional life. In 1985 I joined Mallett, associate directorship followed 4 years later and after 10 years the full management of the subsidiary business Mallett at Bourdon House as well as election to the PLC board. This company I ran for a further 10 years always striving to deliver novelty, quality and a healthy profit. In 2006 It was decided by the then CEO to sell Bourdon House, this was done and I moved over to the Bond St shop where I was appointed Managing Director</p>
 
-                    <p>
-                        In 1985, Thomas joined <strong>Mallett</strong>, where he quickly rose through the ranks to become associate director and later managing director of Mallett at Bourdon House. In 2006, he was appointed Managing Director at the Bond Street location, overseeing one of London's most prestigious antiques galleries.
-                    </p>
+                <p>In the meantime I had become fascinated by the genius photographer and furniture designer Willy Rizzo; I sought him out and mounted a successful joint exhibition in London and New York with the clothes designer Paul Smith. This was followed two years later by a second and Mallett continue to offer pieces by him.</p>
 
-                    <p>
-                        In 2008, Thomas founded and served as Creative Director and Chairman of the <strong>Masterpiece Fair</strong>, an influential art and antiques fair that became a hallmark of the London social calendar. He continued in this role until 2010, when he left Mallett to establish himself in private dealing and consultancy.
-                    </p>
+                <p>In addition I had overseen and managed the merger of the long established restoration business Hatfields with the Mallett restoration workforce and created new Hatfields whilst simultaneously negotiating for Mallett the purchase of new freehold workshop premises in Clapham, Scholars House; sadly they later sold the building. But the business continues to trade.</p>
 
-                    <p>
-                        Since transitioning to independent practice, Thomas has undertaken notable projects including collaborations with renowned photographer and designer Willy Rizzo, overseeing specialized restoration businesses, and acquiring workshop premises in Clapham to support his growing network of craftspeople and conservators.
-                    </p>
+                <p>In 2008 with the London antique fair scene in decline and the English furniture world depressed I put together a consortium to set up the Masterpiece fair. After a long search we found its permanent home at the Royal Hospital. Each year it has developed and improved and is delivering great results for many dealers. I am no longer involved but remain a shareholder, having been Creative Director and the founding Chairman.</p>
 
-                    <p>
-                        In 2019, Thomas co-purchased and spearheaded the regeneration of the <strong>BADA Fair</strong>, rebranding and repositioning it as <strong>The Open Art Fair</strong>. This venture reflects his ongoing commitment to fostering excellence and innovation within the antiques and art community.
-                    </p>
+                <p>In 2010 I left Mallett to concentrate on Masterpiece, private dealing and consultancy. I remained a buying consultant for Mallett until 2015.</p>
 
-                    <h2>Philosophy</h2>
+                <p>In 2015 I was, for a heartbeat, enticed to become joint CEO of the Fine Art Auction Group, which includes Mallett, the auctioneers Dreweatt Bloomsbury, and is a subsidiary of the stamp traders Stanley Gibbons. That only lasted for a couple of months but it was both challenging and delightful despite its brevity.</p>
 
-                    <p>
-                        Thomas believes that the true value of an antique lies not merely in its age or provenance, but in the craftsmanship and design that created it. Whether sourcing Georgian furniture, European ceramics, or contemporary works by emerging designers, his focus remains unwavering: quality of manufacture and originality of design.
-                    </p>
-                </div>
+                <p>In 2019 with Harry Van Der Hoorn of Stabilo I bought 80% of the BADA fair and set about regenerating it. We changed the name to The Open Art Fair and held our first edition in March 2020. Sadly for us and the exhibitors this was the eye of the storm for the first wave of Covid 19 and we were forced to close after only two days of exhibition. We shall see whether the fair can survive.</p>
+
+                <p>I hope to develop many other ideas and would like assist others to bring to fruition their creativity and energy.</p>
+
+                <p>If you have need of any advice or guidance please feel free to get in touch.</p>
             </div>
-        </section>
-
-        <section class="contact-section">
-            <div class="container">
-                <h2>Get In Touch</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>Email</h3>
-                        <p><a href="mailto:info@woodhamsmith.com">info@woodhamsmith.com</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>Address</h3>
-                        <p>29 Hanover Gardens<br>London SE11 5TN<br>United Kingdom</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer class="footer-minimal">
@@ -110,6 +85,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>
