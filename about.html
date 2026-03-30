@@ -6,6 +6,24 @@
     <title>About - Woodham Smith</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-page { padding-top: 100px; padding-bottom: var(--spacing-3xl); background-color: var(--color-off-white); }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 var(--spacing-lg); }
+        .about-hero h1 { font-size: var(--fs-h2); margin-bottom: var(--spacing-xl); }
+        .about-text p { margin-bottom: var(--spacing-lg); line-height: var(--lh-relaxed); }
+        .about-text h2 { font-size: var(--fs-h3); margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-lg); }
+        .contact-section { margin-top: var(--spacing-3xl); padding-top: var(--spacing-2xl); border-top: 1px solid var(--color-light-gray); }
+        .contact-section h2 { margin-bottom: var(--spacing-xl); }
+        .contact-info { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
+        .contact-item h3 { font-size: var(--fs-base); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-sm); }
+        @media (max-width: 768px) { .contact-info { grid-template-columns: 1fr; } }
+        .footer-minimal { padding: var(--spacing-xl) var(--spacing-lg); text-align: center; background-color: transparent; }
+        .footer-minimal-inner { max-width: 1400px; margin: 0 auto; }
+        .social-icons { display: flex; justify-content: center; gap: var(--spacing-lg); }
+        .social-icons a { display: inline-flex; width: 20px; height: 20px; color: var(--color-charcoal); transition: color var(--transition-normal); }
+        .social-icons a:hover { color: var(--color-gold); }
+        .social-icons svg { width: 100%; height: 100%; fill: currentColor; }
+    </style>
 </head>
 <body>
     <!-- Header -->
