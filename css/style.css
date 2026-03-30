@@ -9,19 +9,20 @@
 
 :root {
   /* Color Palette */
-  --color-off-white: #faf9f7;
+  --color-off-white: #cfcfcf;
   --color-white: #ffffff;
   --color-charcoal: #1a1a1a;
   --color-dark-gray: #2a2a2a;
-  --color-light-gray: #f0ebe3;
+  --color-light-gray: #e0e0e0;
   --color-medium-gray: #999999;
-  --color-gold: #b8860b;
-  --color-gold-light: #d4af37;
-  --color-gold-dark: #8b6914;
+  --color-gold: #3a6e5f;
+  --color-gold-light: #4a8a75;
+  --color-gold-dark: #2d5a4c;
+  --color-green: #3a6e5f;
 
   /* Typography */
-  --font-serif: "Cormorant Garamond", "Georgia", serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  --font-serif: "EB Garamond", "Georgia", serif;
+  --font-sans: "EB Garamond", "Georgia", serif;
 
   /* Font Sizes */
   --fs-h1: 3.5rem;
@@ -182,7 +183,7 @@ button {
   right: 0;
   z-index: 1000;
   background-color: var(--color-off-white);
-  border-bottom: 1px solid var(--color-light-gray);
+  border-bottom: none;
   transition: all var(--transition-normal);
   padding: var(--spacing-md) var(--spacing-lg);
 }
@@ -203,25 +204,29 @@ button {
   font-family: var(--font-serif);
   font-size: var(--fs-h4);
   font-weight: 400;
-  letter-spacing: 0.05em;
-  color: var(--color-charcoal);
+  letter-spacing: 0.35em;
+  color: var(--color-green);
   text-transform: uppercase;
-  transition: color var(--transition-normal);
+  transition: opacity var(--transition-normal);
+}
+
+.logo a {
+  color: var(--color-green);
 }
 
 .logo:hover {
-  color: var(--color-gold);
+  opacity: 0.8;
 }
 
 .nav {
-  display: none;
-  gap: var(--spacing-2xl);
+  display: flex;
+  gap: var(--spacing-xl);
 }
 
 .nav a {
   font-size: var(--fs-base);
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: none;
   position: relative;
 }
 
@@ -242,7 +247,7 @@ button {
 
 /* Mobile Hamburger Menu */
 .hamburger {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 6px;
   width: 24px;
@@ -498,41 +503,77 @@ button {
    ============================================================================ */
 
 .category-filter {
-  padding: var(--spacing-lg) var(--spacing-lg);
-  background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-light-gray);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-off-white);
+  border-bottom: none;
+  position: sticky;
+  top: 70px;
+  z-index: 100;
 }
 
 .category-filter-container {
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
-  gap: var(--spacing-md);
-  white-space: nowrap;
-  padding: 0 0 var(--spacing-sm) 0;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Dropdown for mobile */
+.filter-select {
+  display: none;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 12px 40px 12px 16px;
+  font-family: var(--font-serif);
+  font-size: var(--fs-base);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-charcoal);
+  border-radius: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a1a1a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
 }
 
 .filter-pill {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border: 1px solid var(--color-medium-gray);
+  padding: 8px 20px;
+  border: none;
+  border-bottom: 2px solid transparent;
   background-color: transparent;
-  color: var(--color-charcoal);
+  color: var(--color-medium-gray);
+  font-family: var(--font-serif);
   font-size: var(--fs-small);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 20px;
   cursor: pointer;
   transition: all var(--transition-normal);
   flex-shrink: 0;
 }
 
-.filter-pill:hover,
+.filter-pill:hover {
+  color: var(--color-charcoal);
+}
+
 .filter-pill.active {
-  background-color: var(--color-charcoal);
-  color: var(--color-white);
-  border-color: var(--color-charcoal);
+  color: var(--color-charcoal);
+  border-bottom-color: var(--color-charcoal);
+}
+
+@media (max-width: 768px) {
+  .filter-pill {
+    display: none;
+  }
+  .filter-select {
+    display: block;
+  }
 }
 
 /* ============================================================================
@@ -1007,10 +1048,48 @@ button {
    ============================================================================ */
 
 .footer {
-  background-color: var(--color-charcoal);
-  color: var(--color-white);
-  padding: var(--spacing-3xl) var(--spacing-lg) var(--spacing-lg);
-  margin-top: var(--spacing-3xl);
+  background-color: transparent;
+  color: var(--color-charcoal);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* Minimal footer (like old site) */
+.footer-minimal {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.footer-minimal-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-charcoal);
+  transition: color var(--transition-normal);
+}
+
+.social-icons a svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.social-icons a:hover {
+  color: var(--color-green);
 }
 
 .footer-container {
@@ -1057,25 +1136,27 @@ button {
   display: flex;
   gap: var(--spacing-md);
   margin-top: var(--spacing-md);
+  align-items: center;
 }
 
 .social-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--color-white);
   color: var(--color-white);
-  transition: all var(--transition-normal);
-  font-size: var(--fs-base);
+  transition: opacity var(--transition-normal);
+  font-size: 0;
+  line-height: 0;
+}
+
+.social-links a svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
 }
 
 .social-links a:hover {
-  background-color: var(--color-gold);
-  border-color: var(--color-gold);
-  color: var(--color-charcoal);
+  opacity: 0.7;
 }
 
 .footer-bottom {

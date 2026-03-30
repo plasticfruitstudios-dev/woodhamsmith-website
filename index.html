@@ -3,454 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Woodham Smith - Fine Antiques & Decorative Arts. Curated collection of luxury antiques by Thomas Woodham-Smith.">
-    <title>Woodham Smith - Fine Antiques & Decorative Arts</title>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Stylesheet -->
+    <meta name="description" content="Woodham Smith - Fine Antiques & Decorative Arts by Thomas Woodham-Smith.">
+    <title>Woodham Smith</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
     <style>
-        /* Additional homepage-specific styles */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url('http://static1.squarespace.com/static/55ffceffe4b0af0b2a75e951/5795f665d2b857dd70a7acaf/6034ef2e2510263873d52b1d/1614081843706/Chippendale+Mahogany+Centre+Table+_1+2.jpeg?format=1500w');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-top: 60px;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(26, 26, 26, 0.4);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: white;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            color: white;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-content p {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 400;
-            letter-spacing: 0.05em;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Fade-in animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Selected Works Section */
-        .selected-works {
-            padding: var(--spacing-3xl) var(--spacing-lg);
+        .categories-section {
+            padding: var(--spacing-xl) var(--spacing-lg);
+            padding-top: calc(var(--spacing-xl) + 70px);
             background-color: var(--color-off-white);
+            min-height: 100vh;
         }
-
-        .selected-works-header {
-            text-align: center;
-            margin-bottom: var(--spacing-3xl);
-        }
-
-        .selected-works-header h2 {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .products-grid {
+        .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-2xl);
-            margin-bottom: var(--spacing-3xl);
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            max-width: 1400px;
+            margin: 0 auto;
         }
-
-        .product-card {
-            background-color: var(--color-white);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-normal);
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 2px;
-        }
-
-        .product-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-8px);
-        }
-
-        .product-image-container {
-            width: 100%;
-            padding-bottom: 100%;
-            position: relative;
-            background-color: var(--color-light-gray);
-            overflow: hidden;
-        }
-
-        .product-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-normal);
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: var(--spacing-lg);
-        }
-
-        .product-title {
-            font-size: var(--fs-h4);
-            font-family: var(--font-serif);
-            margin-bottom: var(--spacing-sm);
-            color: var(--color-charcoal);
-        }
-
-        .product-description {
-            font-size: var(--fs-small);
-            color: var(--color-medium-gray);
-            line-height: var(--lh-relaxed);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .product-category {
-            font-size: var(--fs-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-gold);
-            font-weight: 600;
-        }
-
-        /* About Preview Section */
-        .about-preview {
-            padding: var(--spacing-3xl) var(--spacing-lg);
-            background-color: var(--color-white);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-3xl);
-            align-items: center;
-        }
-
-        .about-preview-content h2 {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .about-preview-content p {
-            color: var(--color-medium-gray);
-            margin-bottom: var(--spacing-lg);
-            line-height: var(--lh-relaxed);
-        }
-
-        .about-link {
-            display: inline-block;
-            font-family: var(--font-serif);
-            font-size: var(--fs-h4);
-            color: var(--color-charcoal);
+        .category-card {
             text-decoration: none;
-            border-bottom: 2px solid var(--color-charcoal);
-            padding-bottom: 4px;
-            transition: all var(--transition-normal);
+            color: inherit;
+            display: block;
         }
-
-        .about-link:hover {
-            color: var(--color-gold);
-            border-bottom-color: var(--color-gold);
+        .category-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease;
         }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .about-preview {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--spacing-xl);
-            }
-
-            .selected-works {
-                padding: var(--spacing-2xl) var(--spacing-lg);
-            }
-
-            .hero-section {
-                background-attachment: scroll;
-            }
+        .category-card:hover img {
+            opacity: 0.85;
+        }
+        .category-card-title {
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-align: center;
+            padding: var(--spacing-sm) 0;
+            color: var(--color-charcoal);
         }
 
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: var(--spacing-lg);
-            }
-
-            .selected-works {
-                padding: var(--spacing-2xl) var(--spacing-md);
-            }
-
-            .about-preview {
-                padding: var(--spacing-2xl) var(--spacing-md);
-                gap: var(--spacing-2xl);
-            }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm); }
+            .categories-section { padding: var(--spacing-lg) var(--spacing-sm); padding-top: calc(var(--spacing-lg) + 70px); }
         }
-
         @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .selected-works-header h2 {
-                font-size: var(--fs-h3);
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
+            .categories-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <div class="logo">
-                <a href="index.html">Woodham Smith</a>
-            </div>
-
-            <nav class="nav">
-                <a href="index.html">Antiques</a>
-                <a href="about.html">About</a>
-                <a href="blog.html">Blog</a>
+            <div class="logo"><a href="index.html">Woodham-Smith LTD</a></div>
+            <nav class="nav" id="nav">
+                <a href="antiques.html" class="nav-link">Antiques</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
             </nav>
-
-            <nav class="mobile-nav" id="mobileNav">
-                <a href="index.html">Antiques</a>
-                <a href="about.html">About</a>
-                <a href="blog.html">Blog</a>
-            </nav>
-
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Fine Antiques & Decorative Arts</h1>
-            <p>Curated by Thomas Woodham-Smith</p>
-        </div>
-    </section>
-
-    <!-- Selected Works Section -->
-    <section class="selected-works fade-in">
-        <div class="container">
-            <div class="selected-works-header">
-                <h2>Selected Works</h2>
-                <p style="color: var(--color-medium-gray);">A curated selection of our finest pieces</p>
+    <main>
+        <section class="categories-section">
+            <div class="categories-grid">
+                <a href="antiques.html#furniture" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1622643129213-84X064YDE83L58YKFX7V/Folding+Bamboo+Settee_1.jpeg?format=750w" alt="Furniture">
+                    <div class="category-card-title">Furniture</div>
+                </a>
+                <a href="antiques.html#lighting" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1601567408239-I2W2ROAZ6L0A2S481NPQ/IMG_4993.jpeg?format=750w" alt="Lighting">
+                    <div class="category-card-title">Lighting</div>
+                </a>
+                <a href="antiques.html#mirrors" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1733084660663-YA0N2OM5OZ4M4I5GYJK2/1_.jpg?format=750w" alt="Mirrors">
+                    <div class="category-card-title">Mirrors</div>
+                </a>
+                <a href="antiques.html#objects" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1601567853367-GAGAFO1TE4UBI1HX7CHL/IMG_4990.jpeg?format=750w" alt="Objects">
+                    <div class="category-card-title">Objects</div>
+                </a>
+                <a href="antiques.html#coffee-and-end-tables" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1652947927564-W1EZRERLDE1YQY794SCG/0W2A6252.jpg?format=750w" alt="Coffee and End Tables">
+                    <div class="category-card-title">Coffee and End Tables</div>
+                </a>
+                <a href="antiques.html#ceramics-and-glass" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1668623720193-EX43RPZTRJV42UW93ESF/37876062-666F-4951-91C8-00DBAB535406_1_105_c.jpeg?format=750w" alt="Ceramics and Glass">
+                    <div class="category-card-title">Ceramics and Glass</div>
+                </a>
+                <a href="antiques.html#20th-and-21-st-century-furniture" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1504356522423-3W4P5AV3KKWA7GCOPTME/0W2A0165.jpg?format=750w" alt="20th and 21st Century Furniture">
+                    <div class="category-card-title">20th and 21st Century Furniture</div>
+                </a>
+                <a href="antiques.html#clocks" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1547477799608-GZMY5VRYL1JS2V4EU8OS/image-asset.jpeg?format=750w" alt="Clocks">
+                    <div class="category-card-title">Clocks</div>
+                </a>
+                <a href="antiques.html#pictures" class="category-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/55ffceffe4b0af0b2a75e951/1629714682526-V85YGOTMA3NWSUOAVH12/0W2A9666+2.jpeg?format=750w" alt="Pictures">
+                    <div class="category-card-title">Pictures</div>
+                </a>
             </div>
+        </section>
+    </main>
 
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here via JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Preview Section -->
-    <section class="about-preview fade-in">
-        <div style="max-width: 1440px; margin: 0 auto; padding: 0 var(--spacing-lg); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: center; width: 100%;">
-            <div class="about-preview-content">
-                <h2>About Thomas Woodham-Smith</h2>
-                <p>
-                    With over two decades of expertise in antiques and decorative arts, Thomas Woodham-Smith has established himself as a leading authority in fine furniture and design. His carefully curated collection spans centuries of craftsmanship, from Georgian mahogany to Arts and Crafts masterpieces.
-                </p>
-                <p>
-                    Each piece in our collection has been selected for its exceptional quality, historical significance, and enduring beauty. We believe in the value of timeless design and the stories objects tell.
-                </p>
-                <a href="about.html" class="about-link">Learn More →</a>
-            </div>
-
-            <div style="background-color: var(--color-light-gray); border-radius: 2px; padding: var(--spacing-3xl); display: flex; align-items: center; justify-content: center;">
-                <p style="color: var(--color-medium-gray); text-align: center;">Image placeholder</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4 style="font-size: var(--fs-base); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-md);">Contact</h4>
-                <p>
-                    Email: <a href="mailto:info@woodhamsmith.com">info@woodhamsmith.com</a><br>
-                    Address: 29 Hanover Gardens, London SE11 5TN
-                </p>
-            </div>
-
-            <div class="footer-section">
-                <h4 style="font-size: var(--fs-base); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-md);">Follow</h4>
-                <ul style="list-style: none;">
-                    <li><a href="https://www.instagram.com/woodhamsmithltd/" target="_blank" rel="noopener noreferrer">Instagram @woodhamsmithltd</a></li>
-                    <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                    <li><a href="https://www.linkedin.com/in/thomas-woodham-smith-48229119/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <p style="color: var(--color-medium-gray); font-size: var(--fs-small);">
-                    &copy; 2026 Woodham Smith Ltd. All rights reserved.
-                </p>
+    <footer class="footer-minimal">
+        <div class="footer-minimal-inner">
+            <div class="social-icons">
+                <a href="https://www.instagram.com/woodhamsmithltd/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                <a href="https://www.facebook.com/woodhamsmith" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="https://www.linkedin.com/in/thomas-woodham-smith-48229119/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript -->
-    <script>
-        // Mobile Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobileNav');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-        });
-
-        // Close menu when a link is clicked
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-            });
-        });
-
-        // Load Products from JSON
-        async function loadProducts() {
-            try {
-                const response = await fetch('data/products.json');
-                const products = await response.json();
-
-                // Get first 6 products
-                const featuredProducts = products.slice(0, 6);
-
-                const productsGrid = document.getElementById('productsGrid');
-                productsGrid.innerHTML = '';
-
-                featuredProducts.forEach((product, index) => {
-                    const productCard = document.createElement('div');
-                    productCard.className = 'product-card fade-in';
-                    productCard.style.transitionDelay = `${index * 0.1}s`;
-
-                    const imageUrl = product.images && product.images.length > 0 ? product.images[0] : '';
-
-                    productCard.innerHTML = `
-                        <div class="product-image-container">
-                            ${imageUrl ? `<img src="${imageUrl}" alt="${product.title}" class="product-image">` : '<div style="width: 100%; height: 100%; background: var(--color-light-gray);"></div>'}
-                        </div>
-                        <div class="product-info">
-                            <div class="product-category">${product.category}</div>
-                            <h3 class="product-title">${product.title}</h3>
-                            <p class="product-description">${product.description.substring(0, 120)}...</p>
-                        </div>
-                    `;
-
-                    productCard.addEventListener('click', () => {
-                        window.location.href = `product.html?id=${product.id}`;
-                    });
-
-                    productsGrid.appendChild(productCard);
-                });
-
-                // Trigger fade-in animation
-                observeElements();
-            } catch (error) {
-                console.error('Error loading products:', error);
-            }
-        }
-
-        // Intersection Observer for Fade-in Animation
-        const observeElements = () => {
-            const options = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, options);
-
-            document.querySelectorAll('.fade-in').forEach(element => {
-                observer.observe(element);
-            });
-        };
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProducts();
-            observeElements();
-        });
-    </script>
 </body>
 </html>
